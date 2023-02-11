@@ -51,10 +51,11 @@ public class Board extends TimeStamped {
     }
     //메소드 update 에 BoardListRequstDto의 저장된 DB값을 requestDto에 변수에 입력하고, 기본값 생성자로 지정한다.
 
-    public void updateArticle(String username, String title, String contents) {
+    public void updateArticle(String username, String title, String contents, String pw) {
         this.username = username;
         this.contents = contents;
-        this. title = title;
+        this.title = title;
+        this.pw = pw;
     }
     //메소드 updateArticle에 BoardListRequstDto의 저장된 DB값을 requestDto에 변수에 입력하고, 기본값 생성자로 지정한다.
 }

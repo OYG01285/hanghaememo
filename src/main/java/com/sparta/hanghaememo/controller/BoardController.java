@@ -42,8 +42,9 @@ public class BoardController {
     }
 
     @PostMapping("api/boards/{id}")
-    public Long updateArticle(@PathVariable Long id, @RequestBody BoardListRequestDto requestDto){
-        return boardService.updateArticle(id, requestDto);
+    public ResponseEntity<String> updateArticle(@PathVariable Long id, @RequestBody BoardListRequestDto requestDto){
+        String stateCode = boardService.updateArticle(id, requestDto);
+        return new ResponseEntity<String>(stateCode, HttpStatus.OK);
     }
 
 }

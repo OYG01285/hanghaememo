@@ -63,7 +63,7 @@ public class BoardService {
     }
 
     @Transactional
-    public Long updateArticle(Long id, BoardListRequestDto requestDto){
+    public String updateArticle(Long id, BoardListRequestDto requestDto){
         Board board = boardRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 글입니다.")
         );
@@ -74,7 +74,7 @@ public class BoardService {
         }else{
             stateCode = "400";
         }
-        return id;
+        return stateCode;
     }
 }
 
