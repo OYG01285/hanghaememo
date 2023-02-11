@@ -1,6 +1,7 @@
 package com.sparta.hanghaememo.service;
 
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.sparta.hanghaememo.dto.BoardListRequestDto;
 import com.sparta.hanghaememo.entity.Board;
 import com.sparta.hanghaememo.repository.BoardRepository;
@@ -11,6 +12,7 @@ import lombok.Setter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -67,14 +69,30 @@ public class BoardService {
         Board board = boardRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 글입니다.")
         );
+
         String stateCode = "";
+
         if(requestDto.getPw().equals(board.getPw())) {
+            board.setUsername(requestDto.getUsername());
+            board.setTitle(requestDto.getTitle());
+            board.setContents(requestDto.getContents());
+            board.setPw(requestDto.getPw());
             stateCode = "200";
+
+           //System.out.println(board.toString());
+
             boardRepository.save(board);
+
         }else{
             stateCode = "400";
         }
         return stateCode;
+
+        //오류 코드를 보내기 위해 updateArticle를 String로 작성하였으나
+        //boardRepository에(DB에) 자료를 넣기 위해서는 Board타입으로 자료를 dbboard에 넣어서
+        //return 시켜야 하는데 방법이 생각나질 않음
     }
 }
+
+
 

@@ -35,13 +35,13 @@ public class BoardController {
         return boardService.searchById(id);
     }
 
-    @DeleteMapping("api/boards/{id}")
+    @DeleteMapping("api/boards/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id, @RequestBody Board board){
         String stateCode = boardService.delete(id, board);
         return new ResponseEntity<String>(stateCode, HttpStatus.OK);
     }
 
-    @PostMapping("api/boards/{id}")
+    @PostMapping("api/boards/update/{id}")
     public ResponseEntity<String> updateArticle(@PathVariable Long id, @RequestBody BoardListRequestDto requestDto){
         String stateCode = boardService.updateArticle(id, requestDto);
         return new ResponseEntity<String>(stateCode, HttpStatus.OK);
