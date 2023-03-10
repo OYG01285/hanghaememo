@@ -3,7 +3,6 @@ package com.sparta.hanghaememo.service;
 import com.sparta.hanghaememo.Jwt.JwtUtil;
 import com.sparta.hanghaememo.dto.LoginRequestDto;
 import com.sparta.hanghaememo.dto.SignupRequestDto;
-import com.sparta.hanghaememo.entity.Board;
 import com.sparta.hanghaememo.entity.User;
 import com.sparta.hanghaememo.repository.UserRepositoy;
 import jakarta.servlet.http.HttpServletResponse;

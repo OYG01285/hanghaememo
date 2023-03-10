@@ -29,11 +29,13 @@ public class User {
     private String password;
 
 
-
     public User(SignupRequestDto requestDto) {
         this.username = username;
         this.password = password;
 
+
     }
 }
+
+
 

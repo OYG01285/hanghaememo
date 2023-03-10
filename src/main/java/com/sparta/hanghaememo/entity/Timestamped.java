@@ -6,22 +6,18 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-
 @Getter
-@Setter
 @MappedSuperclass
-@EntityListeners(AutoCloseable.class)
-public abstract class TimeStamped {
+@EntityListeners(AuditingEntityListener.class)
+public class Timestamped {
 
-    //게시글 생성 및 수정 시 시간을 저장하는 entity
     @CreatedDate
-    private LocalDateTime creatAt;
+    private LocalDateTime createdAt;
 
     @LastModifiedDate
-    private  LocalDateTime modifiedAt;
-
-
+    private LocalDateTime modifiedAt;
 
 }

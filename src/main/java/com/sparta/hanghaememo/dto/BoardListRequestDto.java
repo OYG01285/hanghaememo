@@ -1,7 +1,7 @@
 package com.sparta.hanghaememo.dto;
 
 import com.sparta.hanghaememo.entity.Board;
-import com.sparta.hanghaememo.entity.TimeStamped;
+import com.sparta.hanghaememo.entity.Timestamped;
 import com.sparta.hanghaememo.entity.User;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @RequiredArgsConstructor    // 생성자 주입을 임의의 코드 없이 자동으로 설정해주는 어노테이션이다.
-public class BoardListRequestDto {
+public class BoardListRequestDto{
 
     //RequserDto는 서버단에서 보내주는 데이터를 저장하기 위해 사용한다
     //첫번째 과제 내용은 게시글 작성 시, 유저이름, 제목, 내용, 패스워드를 입력받아
@@ -35,10 +35,6 @@ public class BoardListRequestDto {
     private String password;
     private String username;
 
-    private String creatAt;
-
-    private String modifiedAt;
-
 
     // BoardListRequestDto에 객체를 생성한다
 
@@ -47,8 +43,6 @@ public class BoardListRequestDto {
         this.contents = entity.getContents();
         this.password =entity.getPassword();
         this.username =entity.getUsername();
-        this.getCreatAt();
-        this.getModifiedAt();
     }
 }
 

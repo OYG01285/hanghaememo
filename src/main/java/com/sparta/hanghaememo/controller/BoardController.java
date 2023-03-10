@@ -8,8 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
+import java.util.List;
 @RequiredArgsConstructor
 @RestController
 public class BoardController {
@@ -25,35 +25,29 @@ public class BoardController {
     // get 방식으로 가져온 데이터를 서버단에서 보내준 데이터를 내림차순으로 정리한다
 
     @PostMapping("/api/boards")
-    public ResponseEntity<String> creatBoard(@RequestBody BoardListRequestDto requestDto, HttpServletRequest request){
-         String scp = "";
-         try{
-             scp =boardService.creatBoard(requestDto, request);
-         }catch(Exception e){
-             scp = "400";
-             return new ResponseEntity<String>(scp, HttpStatus.BAD_REQUEST);
-        }return new ResponseEntity<String>(scp, HttpStatus.OK);
+    public String creatBoard(@RequestBody BoardListRequestDto requestDto, HttpServletRequest request){
+        String statusCode = "";
+        try{
+            statusCode =boardService.creatBoard(requestDto, request);
+        }catch(Exception e){
+            statusCode = "400";
+            return new String(statusCode);
+        }return new String(statusCode);
     }
 
-    // Board 형식의 creatBoard 메소드를 생성한다
-    // PostMapping을 사용하여 서버단 api/boards url로 통신하여
-    // 서버단에서 입력한 데이터로 BoardListRequestDto 형식으로 requestDto를 초기화 한다.
-    // 데이터는 Body단에 있으므로 RequstBody를 사용하여 Body의 데이터를 가져온다.
-    // 그 후, 그 초기화된 데이터를 boardService에 creatBoard에 전달한다.
-
     @GetMapping("/api/boards")
-    public List<BoardListRequestDto> search(HttpServletRequest request){
-        return boardService.search(request);
+    public List<BoardListRequestDto> boardsearch(HttpServletRequest request){
+        return boardService.boardsearch(request);
     }
 
     @DeleteMapping("/api/boards/delete/{id}")
-    public List<BoardListRequestDto> delete(HttpServletRequest request, @PathVariable Long id, @RequestParam String password ){
-        return boardService.delete(request, id, password);
+    public List<BoardListRequestDto> boarddelete(HttpServletRequest request, @PathVariable Long id, @RequestParam String password ){
+        return boardService.boarddelete(request, id, password);
     }
 
     @PostMapping("/api/boards/update/{id}")
-    public List<BoardListRequestDto> updateArticle(HttpServletRequest request, @RequestBody BoardListRequestDto requestDto,@PathVariable Long id, @RequestParam String password){
-        return boardService.updateArticle(request, requestDto, id, password);
+    public List<BoardListRequestDto> boardupdateArticle(HttpServletRequest request, @RequestBody BoardListRequestDto requestDto,@PathVariable Long id, @RequestParam String password){
+        return boardService.boardupdateArticle(request, requestDto, id, password);
     }
 
 }
